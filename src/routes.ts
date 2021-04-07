@@ -1,10 +1,10 @@
 import Routes from 'express';
 
+import user from './modules/user/controllers/user.controller';
+
 const routes = Routes();
 
-routes.get('/', (req, res) => {
-    res.send('test');
-})
-    
+routes.route('/create')
+    .post(user)
 
 export default routes;
