@@ -11,3 +11,10 @@ export const createUserValidate: ValidationChain[] = [
         .isLength({ min: 8 }).withMessage({id: 'invalid-password', message: 'A senha precisa ter no mínimo 8 caracteres!'}),
         
 ];
+
+export const findOneValidate: ValidationChain[] = [
+    body('email')
+        .exists().withMessage({id: 'required-email', message: 'Email não enviado!'})
+        .isEmail().withMessage({id: 'invalid-email', message: 'Formato inválido!'})
+
+]
