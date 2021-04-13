@@ -8,7 +8,7 @@ import db from './database/connect';
 const app = express();
 const port = process.env.PORT || 4000;
 
-app.use(express.json());
+app.use(express.json()); 
 app.use(cors());
 connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
 
