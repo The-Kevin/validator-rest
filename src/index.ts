@@ -13,7 +13,7 @@ app.use(cors());
 connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
 
 
-app.use('/CRUD', routesUser);
+app.use('/user', routesUser);
 
 app.listen(port, () => {
     console.log(`running in http://localhost:${port}`);
