@@ -2,11 +2,11 @@ import Routes from 'express';
 
 import {createUserValidate, findOneValidate}  from './validation';
 
-import userCreate from './controllers/createUser.controller';
+import {create} from './controllers/user.controller';
 
 const routes = Routes();
 
 routes.route('/create')
-    .post(createUserValidate, userCreate);
+    .post(createUserValidate, create);
 
 export default routes;

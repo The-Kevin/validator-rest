@@ -1,7 +1,7 @@
 import {Schema, model} from 'mongoose';
 
 
-const user = new Schema({
+const User = new Schema({
     name: {
         type: String,
         required: true
@@ -30,4 +30,8 @@ const user = new Schema({
     date: {type: Date, default: Date.now}
 });
 
-export default model('User', user);
+User.methods.serialize = function(){
+    
+}
+
+export default model('User', User);
