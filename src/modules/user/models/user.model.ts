@@ -5,10 +5,13 @@ interface User{
     nick: string
     phone: string
     email: string
-    company: string
+    company: string,
+    pass: string,
     softSkills: Array<string>,
     hardSkills: Array<string>,
-    date: Date
+    date: Date,
+
+    serialize: () => Serialize
 }
 
 interface Serialize extends User, Document{

@@ -9,9 +9,9 @@ export const create = async (req: Request, res: Response) => {
         if(!errors.isEmpty()){
             res.status(400).send(errors);
         }
-        await userModel.create(req.body);
+        const user = await userModel.create(req.body);
 
-         res.send(userModel.prototype.serialize());
+         res.send(user.serialize());
     }catch(error){
         res.send('erro ao criar usuário!');
         console.log(error);
