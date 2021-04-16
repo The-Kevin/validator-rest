@@ -16,7 +16,7 @@ interface Serialize extends User, Document{
     hardSkills: Types.Array<string>
 }
 
-const user = new Schema<Serialize>({
+const userSchema = new Schema<Serialize>({
     name: {
         type: String,
         required: true
@@ -45,7 +45,7 @@ const user = new Schema<Serialize>({
     date: {type: Date, default: Date.now}
 });
 
-user.methods.serialize = function(this: Serialize){
+userSchema.methods.serialize = function(this: Serialize){
     return {
         name: this.name,
         nick: this.nick,
@@ -58,4 +58,4 @@ user.methods.serialize = function(this: Serialize){
     }
 }
 
-export default model<Serialize>('User', user);
+export default model<Serialize>('User', userSchema);
