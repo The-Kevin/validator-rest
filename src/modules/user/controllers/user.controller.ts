@@ -11,7 +11,7 @@ export const create = async (req: Request, res: Response) => {
         }
         await userModel.create(req.body);
 
-        res.send(userModel.prototype.serialize());
+         res.send(userModel.prototype.serialize());
     }catch(error){
         res.send('erro ao criar usuário!');
         console.log(error);
