@@ -25,7 +25,7 @@ export const find = async (req: Request, res: Response) => {
         const data: any = req.query.name;
         const user = await userModel.find({name: data});
         if(user.length == 0){
-            return res.status(400).send('erro ao encontrar o usuario!')
+            return res.status(400).send('erro ao encontrar o usuario!');
         }
 
         return res.send(user);
@@ -68,7 +68,7 @@ export const deleteUser = async (req: Request, res: Response) => {
             { _id: req.body },
         )
 
-        return res.send(user);
+        return res.send("usuário deletado");
 
     }catch(error){
         console.log(error);

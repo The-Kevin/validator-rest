@@ -1,6 +1,6 @@
 import Routes from 'express';
 
-import {createUserValidate, updateValidade}  from './validation';
+import {createUserValidate, updateValidade, deleteValidate}  from './validation';
 
 
 import {create, find, update, deleteUser} from './controllers/user.controller';
@@ -17,6 +17,6 @@ routes.route('/update/:id')
     .put(updateValidade, update)
 
 routes.route('/delete')
-    .delete(deleteUser)
+    .delete(deleteValidate ,deleteUser)
     
 export default routes;

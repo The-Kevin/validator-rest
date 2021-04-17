@@ -48,3 +48,8 @@ export const updateValidade: ValidationChain[] = [
     .isLength({ max: 12 }).withMessage({id: 'invalid-password', message: 'A senha precisa ter no máximo 12 caracteres!'})
     .bail(),
 ]
+
+export const deleteValidate: ValidationChain[] = [
+    body('_id')
+        .exists().withMessage({id: 'required-id', message: 'Id não enviado'})
+]
