@@ -12,14 +12,18 @@ export const create = async (req: Request, res: Response) => {
         }
         const user = await userModel.create(req.body);
 
-         res.send(user.serialize());
+        return res.send(user.serialize());
     }catch(error){
-        res.send('erro ao criar usuário!');
         console.log(error);
+        return res.send('erro ao criar usuário!'); 
     }
    
 }
 
 export const findOne = async (req: Request, res: Response) => {
-   return 0
+    const data: any = req.query.name;
+    
+    const user = await userModel.find({name: data})
+
+    return res.send(user)
 }

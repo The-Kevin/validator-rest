@@ -11,7 +11,8 @@ interface User{
     hardSkills: Array<string>,
     date: Date,
 
-    serialize: () => Serialize
+    serialize: () => Serialize,
+    
 }
 
 interface Serialize extends User, Document{
