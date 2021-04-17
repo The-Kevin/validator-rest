@@ -27,3 +27,7 @@ export const findOne = async (req: Request, res: Response) => {
 
     return res.send(user);
 }
+
+export const update = async (req: Request, res: Response) => {
+    
+}

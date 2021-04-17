@@ -10,6 +10,6 @@ routes.route('/create')
     .post(createUserValidate, create);
 
 routes.route('/findOne')
-    .get(findOne)
+    .get(findOneValidate,findOne)
 
 export default routes;

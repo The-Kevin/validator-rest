@@ -26,8 +26,7 @@ export const createUserValidate: ValidationChain[] = [
 ];
 
 export const findOneValidate: ValidationChain[] = [
-    body('email')
-        .exists().withMessage({id: 'required-email', message: 'Email não enviado!'})
-        .isEmail().withMessage({id: 'invalid-email', message: 'Formato inválido!'})
-
+    body('name')
+        .exists().withMessage({id: 'required-name', message: 'nome não enviado!'})
+        .bail()
 ]
