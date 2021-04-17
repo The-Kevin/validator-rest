@@ -21,5 +21,5 @@ export const create = async (req: Request, res: Response) => {
 }
 
 export const findOne = async (req: Request, res: Response) => {
-   
+   return 0
 }
