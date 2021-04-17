@@ -8,7 +8,7 @@ export const createUserValidate: ValidationChain[] = [
         .isEmail().withMessage({id: 'invalid-email', message: 'Formato inválido!'})
         .custom(async value => {
             try{
-                const find = await userModel.find({email: value})
+                const find = await userModel.findOne({email: value})
                 if(find){
                     return Promise.reject("Email ja esta sendo usado!");          
                 }

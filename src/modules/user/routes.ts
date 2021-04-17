@@ -3,7 +3,7 @@ import Routes from 'express';
 import {createUserValidate, updateValidade}  from './validation';
 
 
-import {create, find, update} from './controllers/user.controller';
+import {create, find, update, deleteUser} from './controllers/user.controller';
 
 const routes = Routes();
 
@@ -15,4 +15,8 @@ routes.route('/find')
 
 routes.route('/update/:id')
     .put(updateValidade, update)
+
+routes.route('/delete')
+    .delete(deleteUser)
+    
 export default routes;

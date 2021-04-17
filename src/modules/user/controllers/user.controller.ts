@@ -56,3 +56,22 @@ export const update = async (req: Request, res: Response) => {
     }
   
 }
+
+export const deleteUser = async (req: Request, res: Response) => {
+    try{
+        const errors = validationResult(req);
+        if(!errors.isEmpty()){
+            return res.status(400).send(errors);
+        }
+
+        const user = await userModel.findOneAndDelete(
+            { _id: req.body },
+        )
+
+        return res.send(user);
+
+    }catch(error){
+        console.log(error);
+        return res.status(500).send('Erro ao deletar usuário');
+    }
+}
