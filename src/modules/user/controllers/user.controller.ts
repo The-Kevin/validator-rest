@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 import userModel from '../models/user.model';
 
-
 export const create = async (req: Request, res: Response) => {
     try{
         const errors = validationResult(req);
@@ -29,5 +28,18 @@ export const findOne = async (req: Request, res: Response) => {
 }
 
 export const update = async (req: Request, res: Response) => {
-    return 0
+    try{
+        const user = await userModel.findOneAndUpdate(
+        {_id: req.params.id},
+        req.body,
+        {new: true, overwrite: true}
+        );
+
+        return res.send(user);
+
+    }catch(error){
+        console.log(error);
+        return res.status(500).send('Erro ao atualizar usuário');
+    }
+  
 }
