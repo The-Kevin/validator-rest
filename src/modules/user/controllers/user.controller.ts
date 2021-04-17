@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 import userModel from '../models/user.model';
 
+
 export const create = async (req: Request, res: Response) => {
     try{
         const errors = validationResult(req);
@@ -20,10 +21,5 @@ export const create = async (req: Request, res: Response) => {
 }
 
 export const findOne = async (req: Request, res: Response) => {
-    const data = req.query.id
-    try{
-        await userModel.find({})
-    }catch(error){
-
-    }
+   
 }
