@@ -1,0 +1,7 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+git diff HEAD --quiet && npm run test && npm run lint
+git diff HEAD --quiet  && npm run lint
+git diff HEAD --quiet  && npm run lint
+git diff HEAD --quiet && npm run lint
