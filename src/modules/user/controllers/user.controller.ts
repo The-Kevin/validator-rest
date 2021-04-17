@@ -29,5 +29,5 @@ export const findOne = async (req: Request, res: Response) => {
 }
 
 export const update = async (req: Request, res: Response) => {
-    
+    return 0
 }
