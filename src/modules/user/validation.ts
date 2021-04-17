@@ -8,12 +8,12 @@ export const createUserValidate: ValidationChain[] = [
         .isEmail().withMessage({id: 'invalid-email', message: 'Formato inválido!'})
         .custom(async value => {
             try{
-                const find = await userModel.findOne({email: value})
+                const find = await userModel.find({email: value})
                 if(find){
-                    return Promise.reject("Email ja esta sendo usado!");
+                    return Promise.reject("Email ja esta sendo usado!");          
                 }
             }catch(e){
-                console.log('validade')
+                console.log('novo usuario criado!')
             }
         })
         .bail(),
@@ -25,14 +25,6 @@ export const createUserValidate: ValidationChain[] = [
 
 ];
 
-export const findOneValidate: ValidationChain[] = [
-    body('email')
-        .exists().withMessage({id: 'required-email', message: 'Email não enviado!'})
-        .isEmail().withMessage({id: 'invalid-email', message: 'Formato inválido!'})
-
-]
-
-
 export const updateValidade: ValidationChain[] = [
     body('email')
       .exists().withMessage({id: 'required-email', message: 'Email não enviado!'})
@@ -42,11 +34,13 @@ export const updateValidade: ValidationChain[] = [
             const find = await userModel.findOne({email: value})
             if(find){
                 return Promise.reject("Email ja esta sendo usado!");
+                
             }
         }catch(e){
-            console.log('validade')
+            console.log(`Um usuário foi alterado no banco de dados! ${Date.now}`);
         }
-    }),
+    })
+    .bail(),
 
     body('pass')
     .exists().withMessage({id: 'required-password', message: 'Senha não enviada!'})

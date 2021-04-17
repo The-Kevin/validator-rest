@@ -2,13 +2,14 @@ import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 import userModel from '../models/user.model';
 
+
 export const create = async (req: Request, res: Response) => {
     try{
-        const errors = validationResult(req);
-
+        const errors = validationResult(req)
         if(!errors.isEmpty()){
-            res.status(400).send(errors);
+            return res.status(400).send(errors);
         }
+
         const user = await userModel.create(req.body);
 
         return res.send(user.serialize());
@@ -19,16 +20,28 @@ export const create = async (req: Request, res: Response) => {
    
 }
 
-export const findOne = async (req: Request, res: Response) => {
-    const data: any = req.query.name;
-    
-    const user = await userModel.find({name: data});
+export const find = async (req: Request, res: Response) => {
+    try{
+        const data: any = req.query.name;
+        const user = await userModel.find({name: data});
+        if(user.length == 0){
+            return res.status(400).send('erro ao encontrar o usuario!')
+        }
 
-    return res.send(user);
+        return res.send(user);
+
+    }catch(error){
+        res.status(500).send("Ocorreu um erro inesperado, tente novamente!");
+    }
 }
 
 export const update = async (req: Request, res: Response) => {
     try{
+        const errors = validationResult(req)
+        if(!errors.isEmpty()){
+            return res.status(400).send(errors);
+        }
+
         const user = await userModel.findOneAndUpdate(
         {_id: req.params.id},
         req.body,
