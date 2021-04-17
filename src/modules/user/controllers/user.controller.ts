@@ -23,7 +23,7 @@ export const create = async (req: Request, res: Response) => {
 export const findOne = async (req: Request, res: Response) => {
     const data: any = req.query.name;
     
-    const user = await userModel.find({name: data})
+    const user = await userModel.find({name: data});
 
-    return res.send(user)
+    return res.send(user);
 }
