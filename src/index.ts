@@ -1,16 +1,17 @@
 import express from 'express';
 import cors from 'cors';
 import { connect } from 'mongoose';
+import 'dotenv-safe/config'
+export const DB = process.env["DB"]
 
 import routesUser from './modules/user/routes';
-import db from './database/connect';
 
 const app = express();
 const port = process.env.PORT || 4000;
 
 app.use(express.json()); 
 app.use(cors());
-connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+connect(DB, { useNewUrlParser: true, useUnifiedTopology: true })
 
 
 app.use('/user', routesUser);
