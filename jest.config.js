@@ -1,3 +1,3 @@
 module.exports = {
-    transform: { ".(js|jsx|tx|tsx)": "@sucrase/jest-plugin" },
+    transform: { ".(js|jsx|ts|tsx)": "@sucrase/jest-plugin" },
 }
