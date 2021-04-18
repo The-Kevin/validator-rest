@@ -44,6 +44,7 @@ export const login = async (req: Request, res: Response) => {
 export const find = async (req: Request, res: Response) => {
     try{
         const data: any = req.query.name;
+
         const user = await userModel.find({name: data});
         if(user.length == 0){
             return res.status(400).send('erro ao encontrar o usuario!');
