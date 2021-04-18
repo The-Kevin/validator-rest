@@ -16,7 +16,7 @@ if(app){
 
 app.use('/user', routesUser);
 
-app.listen(port, () => {
+app.listen(port, (): void => {
     console.log(`running in http://localhost:${port}`);
     console.log(app.response.status(200)['statusCode']);
 });
