@@ -14,7 +14,7 @@ export const create = async (req: Request, res: Response) => {
         return res.send(user.serialize());
     }catch(error){
         console.log(error);
-        return res.send('erro ao criar usuário!'); 
+        return res.status(500).send('erro ao criar usuário!'); 
     }
    
 }
@@ -48,8 +48,10 @@ export const find = async (req: Request, res: Response) => {
         if(user.length == 0){
             return res.status(400).send('erro ao encontrar o usuario!');
         }
-
-        return res.send(user);
+        const result = user.map(obj => {
+            return obj.serialize()
+        })
+        return res.send(result);
 
     }catch(error){
         res.status(500).send("Ocorreu um erro inesperado, tente novamente!");
@@ -69,7 +71,7 @@ export const update = async (req: Request, res: Response) => {
         {new: true, overwrite: true}
         );
 
-        return res.send(user);
+        return res.send(user.serialize());
 
     }catch(error){
         console.log(error);
