@@ -1,7 +1,7 @@
 import Routes from 'express';
 
 import {createUserValidate, updateValidade, deleteValidate, loginValidade}  from './validation';
-
+import {auth} from '../middlewares/auth';
 
 import {create, find, update, deleteUser, login} from './controllers/user.controller';
 
@@ -14,12 +14,12 @@ routes.route('/login')
     .post(loginValidade, login)
 
 routes.route('/find')
-    .get(find)
+    .get(auth ,find)
 
 routes.route('/update/:id')
-    .put(updateValidade, update)
+    .put(auth, updateValidade, update)
 
 routes.route('/delete')
-    .delete(deleteValidate ,deleteUser)
+    .delete(auth, deleteValidate ,deleteUser)
     
 export default routes;

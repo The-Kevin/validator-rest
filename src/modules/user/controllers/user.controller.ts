@@ -1,4 +1,8 @@
 import { Request, Response } from 'express';
+import jwt from 'jsonwebtoken';
+import {JWT_SECRET} from '../../../config/jwt';
+
+
 import { validationResult } from 'express-validator';
 import userModel from '../models/user.model';
 
@@ -27,10 +31,18 @@ export const login = async (req: Request, res: Response) => {
         }
         
         const params = req.body;
-        const user = await userModel.findOne({email: params.email});
+        const {email, pass} = await userModel.findOne({email: params.email});
+        const serializeUser = {
+            email: email,
+            pass: pass
+        }
 
-        if(user.email == params.email && user.pass == params.pass){
-            return res.status(200).send("OK");
+        if(email == params.email && pass == params.pass){
+            const token = jwt.sign(serializeUser, JWT_SECRET,{ expiresIn: (60 * 60)*24 }); 
+            return res.status(200).json({
+                "status": "OK",
+                "token": token
+            });
         }else{
             return res.status(400).send("Erro no usuario e senha! Tente novamente");
         }
