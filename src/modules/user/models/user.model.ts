@@ -44,7 +44,6 @@ const userSchema = new Schema<Serialize>({
     pass: {
         type: String,
         required: true,
-        select: false
     },
     date: {type: Date, default: Date.now}
 });

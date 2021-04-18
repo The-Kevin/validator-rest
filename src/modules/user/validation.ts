@@ -53,3 +53,15 @@ export const deleteValidate: ValidationChain[] = [
     body('_id')
         .exists().withMessage({id: 'required-id', message: 'Id não enviado'})
 ]
+
+export const loginValidade: ValidationChain[] = [
+    body('email')
+        .exists().withMessage({id: 'required-email', message: 'Email não enviado!'})
+        .isEmail().withMessage({id: 'invalid-email', message: 'Formato inválido!'})
+        .bail(),
+    body('pass')
+    .exists().withMessage({id: 'required-password', message: 'Senha não enviada!'})
+    .isLength({ min: 8 }).withMessage({id: 'invalid-password', message: 'A senha precisa ter no mínimo 8 caracteres!'})
+    .isLength({ max: 12 }).withMessage({id: 'invalid-password', message: 'A senha precisa ter no máximo 12 caracteres!'})
+    .bail(),
+]

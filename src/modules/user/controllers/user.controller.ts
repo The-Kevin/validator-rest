@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 import userModel from '../models/user.model';
 
-
 export const create = async (req: Request, res: Response) => {
     try{
         const errors = validationResult(req)
@@ -18,6 +17,28 @@ export const create = async (req: Request, res: Response) => {
         return res.send('erro ao criar usuário!'); 
     }
    
+}
+
+export const login = async (req: Request, res: Response) => {
+    try{
+        const errors = validationResult(req)
+        if(!errors.isEmpty()){
+            return res.status(400).send(errors);
+        }
+        
+        const params = req.body;
+        const user = await userModel.findOne({email: params.email});
+
+        if(user.email == params.email && user.pass == params.pass){
+            return res.status(200).send("OK");
+        }else{
+            return res.status(400).send("Erro no usuario e senha! Tente novamente");
+        }
+
+    }catch(error){
+        console.log(error);
+        return res.status(500).send('Ocorreu um erro inesperado, tente novamente!');
+    }
 }
 
 export const find = async (req: Request, res: Response) => {
