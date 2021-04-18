@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import {JWT_SECRET} from '../../../config/jwt';
 
-
 import { validationResult } from 'express-validator';
 import userModel from '../models/user.model';
 
