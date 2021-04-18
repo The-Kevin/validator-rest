@@ -100,7 +100,7 @@ export const deleteUser = async (req: Request, res: Response) => {
             return res.status(400).send(errors);
         }
 
-        const user = await userModel.findOneAndDelete(
+        await userModel.findOneAndDelete(
             { _id: req.body },
         )
 
