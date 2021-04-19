@@ -4,7 +4,7 @@ import {JWT_SECRET} from '../../config/jwt';
 
 export const auth = (req: Request, res: Response, next: NextFunction) => {
 
-    const token = req.body.token || req.query.token || req.headers['x-access-token']; 
+    const token = req.body.token || req.query.token || req.headers.authorization; 
 
     try{
         jwt.verify(token, JWT_SECRET, (err: Error) => {

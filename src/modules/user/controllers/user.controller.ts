@@ -63,7 +63,7 @@ export const find = async (req: Request, res: Response) => {
         const result = user.map(obj => {
             return obj.serialize()
         })
-        return res.send(result);
+        return res.status(200).send(result);
 
     }catch(error){
         res.status(500).send("Ocorreu um erro inesperado, tente novamente!");
@@ -83,7 +83,7 @@ export const update = async (req: Request, res: Response) => {
         {new: true, overwrite: true}
         );
 
-        return res.send(user.serialize());
+        return res.status(200).send(user.serialize());
 
     }catch(error){
         console.log(error);
@@ -103,7 +103,7 @@ export const deleteUser = async (req: Request, res: Response) => {
             { _id: req.body },
         )
 
-        return res.send("usuário deletado");
+        return res.status(200).send("usuário deletado");
 
     }catch(error){
         console.log(error);
