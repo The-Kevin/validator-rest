@@ -1,15 +1,19 @@
 import request from 'supertest';
 
 import index from '../../src/modules/user/routes';
+import connect from '../../src/database/connect';
 
 describe('integration test to a create method' , () => {
 
     let user;
+
     beforeEach(() => {
+
+
          user = {
             "name": "test",
             "nick": "test",
-            "email": "test@gmail.com",
+            "email": "testkkkkkkkkkk@gmail.com",
             "company": "test company",
             "softSkills": [
                 "patience",
