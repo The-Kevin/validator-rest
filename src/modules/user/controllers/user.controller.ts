@@ -7,7 +7,7 @@ import userModel from '../models/user.model';
 
 export const create = async (req: Request, res: Response) => {
     try{
-        const errors = validationResult(req)
+        const errors = validationResult(req);
         if(!errors.isEmpty()){
             return res.status(400).send(errors);
         }
@@ -24,7 +24,7 @@ export const create = async (req: Request, res: Response) => {
 
 export const login = async (req: Request, res: Response) => {
     try{
-        const errors = validationResult(req)
+        const errors = validationResult(req);
         if(!errors.isEmpty()){
             return res.status(400).send(errors);
         }
@@ -61,7 +61,7 @@ export const find = async (req: Request, res: Response) => {
             return res.status(400).send('erro ao encontrar o usuario!');
         }
         const result = user.map(obj => {
-            return obj.serialize()
+            return obj.serialize();
         })
         return res.status(200).send(result);
 
@@ -72,7 +72,7 @@ export const find = async (req: Request, res: Response) => {
 
 export const update = async (req: Request, res: Response) => {
     try{
-        const errors = validationResult(req)
+        const errors = validationResult(req);
         if(!errors.isEmpty()){
             return res.status(400).send(errors);
         }
