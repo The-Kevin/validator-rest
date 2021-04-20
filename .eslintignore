@@ -1,5 +1,8 @@
 node_modules/
+__tests__/
 
 src/dist
 
 .eslintrc.js
+
+jest.config.js
