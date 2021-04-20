@@ -7,7 +7,7 @@ import userModel from '../models/user.model';
 
 export const create = async (req: Request, res: Response) => {
     try{
-        const errors = validationResult(req)
+        const errors = validationResult(req);
         if(!errors.isEmpty()){
             return res.status(400).send(errors);
         }
@@ -24,7 +24,7 @@ export const create = async (req: Request, res: Response) => {
 
 export const login = async (req: Request, res: Response) => {
     try{
-        const errors = validationResult(req)
+        const errors = validationResult(req);
         if(!errors.isEmpty()){
             return res.status(400).send(errors);
         }
@@ -61,9 +61,9 @@ export const find = async (req: Request, res: Response) => {
             return res.status(400).send('erro ao encontrar o usuario!');
         }
         const result = user.map(obj => {
-            return obj.serialize()
+            return obj.serialize();
         })
-        return res.send(result);
+        return res.status(200).send(result);
 
     }catch(error){
         res.status(500).send("Ocorreu um erro inesperado, tente novamente!");
@@ -72,7 +72,7 @@ export const find = async (req: Request, res: Response) => {
 
 export const update = async (req: Request, res: Response) => {
     try{
-        const errors = validationResult(req)
+        const errors = validationResult(req);
         if(!errors.isEmpty()){
             return res.status(400).send(errors);
         }
@@ -83,7 +83,7 @@ export const update = async (req: Request, res: Response) => {
         {new: true, overwrite: true}
         );
 
-        return res.send(user.serialize());
+        return res.status(200).send(user.serialize());
 
     }catch(error){
         console.log(error);
@@ -103,7 +103,7 @@ export const deleteUser = async (req: Request, res: Response) => {
             { _id: req.body },
         )
 
-        return res.send("usuário deletado");
+        return res.status(200).send("usuário deletado");
 
     }catch(error){
         console.log(error);
