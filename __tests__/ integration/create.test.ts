@@ -36,9 +36,19 @@ describe("integration test to a create method", () => {
     };
   });
 
-  test("test endpoint to create user", async () => {
+  it("test endpoint to create user", async () => {
     const req = await request(app).post("/user/create").send(user);
 
     expect(1).toBe(1);
   });
+
+  it("test endpoint to create user without data", async () => {
+    await request(app).post("/user/create").send({});
+  });
+
+  it("test endpoint to access info user without JWT", async () => {
+    await request(app).post("/user/create").send({});
+  });
+
+  //.set("Authorization", "JWT");
 });
