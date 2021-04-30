@@ -22,33 +22,25 @@ describe("integration test to a create method", () => {
     await mongoose.connection.close();
     done();
   });
+ 
+  let mockUser = {
+    "name": "mockName",
+    "nick": "mockNick",
+    "phone": "7499964xxxx",
+    "email": "email@mock.com",
+    "company": "mockCompany",
+    "softSkills": ["mock1", "mock2"],
+    "hardSkills": ["mock3", "mock4"],
+    "pass": "12345678"
 
-  let user;
+  }
 
-  beforeEach(() => {
-    user = {
-      name: "test",
-      nick: "test",
-      email: "testkkkkkkkkkk@gmail.com",
-      company: "test company",
-      softSkills: ["patience", "not be angry", "coach"],
-      hardSkills: ["html", "google search", "windows"],
-    };
-  });
 
   it("test endpoint to create user", async () => {
-    const req = await request(app).post("/user/create").send(user);
+    const req = await request(app).post("/user/create").send(mockUser);
 
     expect(1).toBe(1);
+
   });
 
-  it("test endpoint to create user without data", async () => {
-    await request(app).post("/user/create").send({});
-  });
-
-  it("test endpoint to access info user without JWT", async () => {
-    await request(app).post("/user/create").send({});
-  });
-
-  //.set("Authorization", "JWT");
 });
